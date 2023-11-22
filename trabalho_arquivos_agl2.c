@@ -2,14 +2,14 @@
 #include<stdlib.h>
 #include<locale.h>
 #include<string.h>
-#include<Windows.h>
+#include<Windows.h>//aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 FILE *Id_Arquivo_Candidatos;
 FILE *Id_Arquivo_Eleitores;
 
 struct Candidato{
     int numero_candidato;  //codigo do candidato
-    char nome[50]; //informaÁoes pessoais
+    char nome[50]; //informa√ßoes pessoais
     char sexo[15];
     int idade;
     int flag;
@@ -17,20 +17,20 @@ struct Candidato{
 
 struct Eleitor{
     int titulo_eleitor; //codigo do eleitor
-    char nome[50];  //informaÁıes pessoais
+    char nome[50];  //informa√ß√µes pessoais
     char sexo[15];
     int idade;
-    int intencao_de_voto; //relaÁ„o com o candidato
+    int intencao_de_voto; //rela√ß√£o com o candidato
     int flag;
 };
 
 //CRUD Candidato
 
-//CreaÁ„o
+//Crea√ß√£o
 void adicionar_candidato(struct Candidato candidato){
 
     if((Id_Arquivo_Candidatos = fopen("candidatos.dat", "a+b")) == NULL){
-        printf("Erro ao abrir arquivo bin·rio dos candidatos para gravaÁ„o!\n");
+        printf("Erro ao abrir arquivo bin√°rio dos candidatos para grava√ß√£o!\n");
     }
 
     candidato.flag = 1;
@@ -44,7 +44,7 @@ void adicionar_candidato(struct Candidato candidato){
 void exibir_candidatos(){
 
     if((Id_Arquivo_Candidatos = fopen("candidatos.dat", "r")) == NULL){
-        printf("Erro ao abrir arquivo bin·rio dos candidatos para leitura!\n");
+        printf("Erro ao abrir arquivo bin√°rio dos candidatos para leitura!\n");
     }
 
     rewind(Id_Arquivo_Candidatos);
@@ -55,7 +55,7 @@ void exibir_candidatos(){
         fread(&candidato, sizeof(struct Candidato), 1, Id_Arquivo_Candidatos);
 
         if(ferror(Id_Arquivo_Candidatos)){
-            printf("Problema na leitura do arquivo bin·rio!\n");
+            printf("Problema na leitura do arquivo bin√°rio!\n");
         }
         else if(!feof(Id_Arquivo_Candidatos) && candidato.flag == 1){
             printf("\nNumero do candidato: %d\n", candidato.numero_candidato);
@@ -71,7 +71,7 @@ void exibir_candidatos(){
 
 void atualizar_candidato(struct Candidato candidatoAtualizado){
     if((Id_Arquivo_Candidatos = fopen("candidatos.dat", "r+b")) == NULL){
-        printf("Erro ao abrir arquivo bin·rio dos eleitores!\n");
+        printf("Erro ao abrir arquivo bin√°rio dos eleitores!\n");
     }
 
     rewind(Id_Arquivo_Candidatos);
@@ -80,7 +80,7 @@ void atualizar_candidato(struct Candidato candidatoAtualizado){
 
 
     int i;
-    printf("Atualizando");// animaÁ„o de atualizaÁ„o
+    printf("Atualizando");// anima√ß√£o de atualiza√ß√£o
     for(i = 0; i < 3; i++){
         printf(".");
         Sleep(500); // usa a biblioteca Windows.h
@@ -112,7 +112,7 @@ void atualizar_candidato(struct Candidato candidatoAtualizado){
 
 void excluir_candidato(int numero_candidato){
     if((Id_Arquivo_Candidatos = fopen("candidatos.dat", "r+b")) == NULL){
-        printf("Erro ao abrir arquivo bin·rio dos eleitores!\n");
+        printf("Erro ao abrir arquivo bin√°rio dos eleitores!\n");
     }
 
     struct Candidato candidato;
@@ -122,7 +122,7 @@ void excluir_candidato(int numero_candidato){
     int cont = 0;
 
     int i;
-    printf("Procurando");// animaÁ„o de procura
+    printf("Procurando");// anima√ß√£o de procura
     for(i = 0; i < 3; i++){
         printf(".");
         Sleep(500); // usa a biblioteca Windows.h
@@ -148,7 +148,7 @@ void excluir_candidato(int numero_candidato){
             break;
         }
         else if(feof(Id_Arquivo_Candidatos)){
-            printf("\nCandidato n„o encontrado!\n");
+            printf("\nCandidato n√£o encontrado!\n");
         }
         cont++;
     }
@@ -159,7 +159,7 @@ void excluir_candidato(int numero_candidato){
 void adicionar_eleitor(struct Eleitor eleitor){
 
     if((Id_Arquivo_Eleitores = fopen("eleitor.dat", "a+b")) == NULL){
-        printf("Erro ao abrir arquivo bin·rio dos eleitores para gravaÁ„o!");
+        printf("Erro ao abrir arquivo bin√°rio dos eleitores para grava√ß√£o!");
     }
 
     eleitor.flag = 1;
@@ -203,7 +203,7 @@ int main(){
                         fflush(stdin);
                         printf("**Cadastro do Candidato**\n");
 
-                        printf("Digite numero de identificaÁ„o do candidato: ");
+                        printf("Digite numero de identifica√ß√£o do candidato: ");
                         scanf("%d", &candidato.numero_candidato);
                         fflush(stdin);
 
@@ -229,9 +229,9 @@ int main(){
                         system("pause");
                         break;
                     case 3:
-                        printf("**AtualizaÁ„o do candidato**\n");
+                        printf("**Atualiza√ß√£o do candidato**\n");
 
-                        printf("Digite numero de identificaÁ„o do candidato a ser alterado: ");
+                        printf("Digite numero de identifica√ß√£o do candidato a ser alterado: ");
                         scanf("%d", &candidato.numero_candidato);
                         fflush(stdin);
 
@@ -256,7 +256,7 @@ int main(){
                     case 4:
                         system("cls");
                         int numero_candidato;
-                        printf("Digite o n˙mero do candidato: ");
+                        printf("Digite o n√∫mero do candidato: ");
                         scanf("%d", &numero_candidato);
 
                         excluir_candidato(numero_candidato);
@@ -264,7 +264,7 @@ int main(){
                         break;
                     default:
                         system("cls");
-                        printf("OpÁ„o inv·lida!\n\a");
+                        printf("Op√ß√£o inv√°lida!\n\a");
                         system("pause");
                         break;
                 }
@@ -304,7 +304,7 @@ int main(){
                         scanf("%d", &eleitor.idade);
                         fflush(stdin);
 
-                        printf("Digite a intenÁ„o de voto do eleitor:\n");
+                        printf("Digite a inten√ß√£o de voto do eleitor:\n");
                         scanf("%d", &eleitor.intencao_de_voto);
                         fflush(stdin);
 
@@ -321,13 +321,13 @@ int main(){
                         break;
                     default:
                         system("cls");
-                        printf("OpÁ„o inv·lida!\n\a");
+                        printf("Op√ß√£o inv√°lida!\n\a");
                         system("pause");
                         break;
                 }
                 break;
             default:
-                printf("OpÁ„o inv·lida!\n\a");
+                printf("Op√ß√£o inv√°lida!\n\a");
                 system("pause");
                 break;
 
