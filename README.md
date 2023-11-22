@@ -2,6 +2,7 @@
 Trabalho realizado na disciplina de Algoritmos II
 
 Realização de um programa que utiliza arquivos binários com a seguinte descrição do professor:
+
 "
 Programa para gerenciamento de pesquisa eleitoral. 
 
