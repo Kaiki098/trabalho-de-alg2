@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<locale.h>
+#include<locale.h>//biblioteca para localização em PT-BR
 #include<string.h>
-#include<Windows.h>
+#include<Windows.h>//biblioteca da função Sleep
 
 FILE *Id_Arquivo_Candidatos;
 FILE *Id_Arquivo_Eleitores;
@@ -12,7 +12,7 @@ struct Candidato{
     char nome[50]; //informaçoes pessoais
     char sexo[15];
     int idade;
-    int flag;
+    int flag;// variavel para exclusão lógica
 };
 
 struct Eleitor{
@@ -21,12 +21,12 @@ struct Eleitor{
     char sexo[15];
     int idade;
     int intencao_de_voto; //relação com o candidato
-    int flag;
+    int flag;// variavel para exclusão lógica
 };
 
 //CRUD Candidato
 
-//Creação
+//Criação
 void adicionar_candidato(struct Candidato candidato){
 
     if((Id_Arquivo_Candidatos = fopen("candidatos.dat", "a+b")) == NULL){
@@ -69,6 +69,7 @@ void exibir_candidatos(){
 
 }
 
+//Atualização
 void atualizar_candidato(struct Candidato candidatoAtualizado){
     if((Id_Arquivo_Candidatos = fopen("candidatos.dat", "r+b")) == NULL){
         printf("Erro ao abrir arquivo binário dos eleitores!\n");
@@ -110,6 +111,7 @@ void atualizar_candidato(struct Candidato candidatoAtualizado){
     fclose(Id_Arquivo_Candidatos);
 }
 
+//Exclusão
 void excluir_candidato(int numero_candidato){
     if((Id_Arquivo_Candidatos = fopen("candidatos.dat", "r+b")) == NULL){
         printf("Erro ao abrir arquivo binário dos eleitores!\n");
@@ -176,7 +178,7 @@ int main(){
     struct Candidato candidato;
     struct Eleitor eleitor;
 
-    do{
+    do{//Menu Geral de Candidato e Eleitor
         system("cls");
         printf("0- Sair\n");
         printf("1- Candidato\n");
@@ -186,7 +188,7 @@ int main(){
             case 0:
 
                 break;
-            case 1:
+            case 1://Menu Candidato
                 system("cls");
                 printf("0- Voltar\n");
                 printf("1- Adicionar Candidato\n");
@@ -269,7 +271,7 @@ int main(){
                         break;
                 }
                 break;
-            case 2:
+            case 2://Menu Eleitor
                 system("cls");
                 printf("0- Sair\n");
                 printf("1- Adicionar eleitor\n");
