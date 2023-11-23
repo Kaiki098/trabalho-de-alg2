@@ -185,6 +185,7 @@ int main(){
     struct Eleitor eleitor;
 
     do{//Menu Geral de Candidato e Eleitor
+    	menu_geral:
         system("cls");
         printf(ANSI_COLOR_RED "0- Sair\n");
         printf(ANSI_COLOR_BLUE "1- Candidato\n");
@@ -195,6 +196,7 @@ int main(){
 
                 break;
             case 1://Menu Candidato
+            	menu_candidato:
                 system("cls");
                 printf(ANSI_COLOR_BLUE "0- Voltar\n");
                 printf("1- Adicionar Candidato\n");
@@ -204,7 +206,7 @@ int main(){
                 scanf("%d", &opc );
                 switch(opc){
                     case 0:
-                        opc = 1;
+                        goto menu_geral;
                         break;
                     case 1:
                         system("cls");
@@ -232,11 +234,13 @@ int main(){
                         adicionar_candidato(candidato);
                         printf("Candidato Adicionado!");
                         system("pause");
+                        goto menu_candidato;
                         break;
                     case 2:
                         system("cls");
                         exibir_candidatos();
                         system("pause");
+                        goto menu_candidato;
                         break;
                     case 3:
                         printf("**Atualização do candidato**\n");
@@ -263,6 +267,7 @@ int main(){
                         atualizar_candidato(candidato);
                         printf("\nCandidato Atualizado!\n");
                         system("pause");
+                        goto menu_candidato;
                         break;
                     case 4:
                         system("cls");
@@ -272,15 +277,18 @@ int main(){
 
                         excluir_candidato(numero_candidato);
                         system("pause");
+                        goto menu_candidato;
                         break;
                     default:
                         system("cls");
                         printf("Opção inválida!\n\a");
                         system("pause");
+                        goto menu_candidato;
                         break;
                 }
                 break;
             case 2://Menu Eleitor
+            	menu_eleitor:
                 system("cls");
                 printf("0- Sair\n");
                 printf("1- Adicionar eleitor\n");
@@ -291,6 +299,7 @@ int main(){
 
                 switch(opc){
                     case 0:
+                    	goto menu_geral;
                         break;
                     case 1:
                         system("cls");
@@ -320,20 +329,25 @@ int main(){
                         fflush(stdin);
 
                         adicionar_eleitor(eleitor);
+                        goto menu_eleitor;
                         break;
                     case 2:
                       //  exibir_eleitor();
+                      	goto menu_eleitor;
                         break;
                     case 3:
                        // atualizar_eleitor();
+                       	goto menu_eleitor;
                         break;
                     case 4:
                        // excluir_eleitor();
+                       	goto menu_eleitor;
                         break;
                     default:
                         system("cls");
                         printf("Opção inválida!\n\a");
                         system("pause");
+                        goto menu_eleitor;
                         break;
                 }
                 break;
