@@ -3,6 +3,10 @@
 #include<locale.h>//biblioteca para localização em PT-BR
 #include<string.h>
 #include<Windows.h>//biblioteca da função Sleep
+#define ANSI_COLOR_RED "\x1b[31m"//Cores usadas no programa
+#define ANSI_COLOR_RESET   "\x1b[0m"
+#define ANSI_COLOR_YELLOW "\033[33m"
+#define ANSI_COLOR_BLUE "\033[34m"
 
 FILE *Id_Arquivo_Candidatos;
 FILE *Id_Arquivo_Eleitores;
@@ -180,9 +184,9 @@ int main(){
 
     do{//Menu Geral de Candidato e Eleitor
         system("cls");
-        printf("0- Sair\n");
-        printf("1- Candidato\n");
-        printf("2- Eleitor\n");
+        printf(ANSI_COLOR_RED "0- Sair\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_BLUE "1- Candidato\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_YELLOW "2- Eleitor\n" ANSI_COLOR_RESET);
         scanf("%d", &opc);
         switch(opc){
             case 0:
@@ -190,7 +194,7 @@ int main(){
                 break;
             case 1://Menu Candidato
                 system("cls");
-                printf("0- Voltar\n");
+                printf(ANSI_COLOR_BLUE "0- Voltar\n");
                 printf("1- Adicionar Candidato\n");
                 printf("2- Exibir Candidatos\n");
                 printf("3- Atualizar Candidato\n");
