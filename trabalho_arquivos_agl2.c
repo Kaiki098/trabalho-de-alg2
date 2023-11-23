@@ -107,7 +107,7 @@ void atualizar_candidato(struct Candidato candidatoAtualizado){
         }
         cont++;
     }
-    printf("\nCandidato Atualizado!\n");
+    
     fclose(Id_Arquivo_Candidatos);
 }
 
@@ -224,6 +224,8 @@ int main(){
                         fflush(stdin);
 
                         adicionar_candidato(candidato);
+                        printf("Candidato Adicionado!");
+                        system("pause");
                         break;
                     case 2:
                         system("cls");
@@ -253,6 +255,7 @@ int main(){
 
                         system("cls");
                         atualizar_candidato(candidato);
+                        printf("\nCandidato Atualizado!\n");
                         system("pause");
                         break;
                     case 4:
