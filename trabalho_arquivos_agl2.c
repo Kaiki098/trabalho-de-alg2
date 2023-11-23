@@ -186,9 +186,9 @@ int main(){
 
     do{//Menu Geral de Candidato e Eleitor
         system("cls");
-        printf(ANSI_COLOR_RED "0- Sair\n" ANSI_COLOR_RESET);
-        printf(ANSI_COLOR_BLUE "1- Candidato\n" ANSI_COLOR_RESET);
-        printf(ANSI_COLOR_YELLOW "2- Eleitor\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_RED "0- Sair\n");
+        printf(ANSI_COLOR_BLUE "1- Candidato\n");
+        printf(ANSI_COLOR_YELLOW "2- Eleitor\n");
         scanf("%d", &opc);
         switch(opc){
             case 0:
