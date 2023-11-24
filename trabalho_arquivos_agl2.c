@@ -190,6 +190,7 @@ int main(){
         printf(ANSI_COLOR_RED "0- Sair\n");
         printf(ANSI_COLOR_BLUE "1- Candidato\n");
         printf(ANSI_COLOR_YELLOW "2- Eleitor\n");
+        printf("3- Exibir resultado da pesquisa\n");
         scanf("%d", &opc);
         switch(opc){
             case 0:
@@ -232,7 +233,7 @@ int main(){
                         fflush(stdin);
 
                         adicionar_candidato(candidato);
-                        printf("Candidato Adicionado!");
+                        printf("Candidato Adicionado!\n");
                         system("pause");
                         goto menu_candidato;
                         break;
@@ -295,6 +296,7 @@ int main(){
                 printf("2- Exibir eleitor\n");
                 printf("3- Atualizar eleitor\n");
                 printf("4- Excluir eleitor\n");
+                printf("5- Votar\n");
                 scanf("%d", &opc );
 
                 switch(opc){
@@ -343,6 +345,10 @@ int main(){
                        // excluir_eleitor();
                        	goto menu_eleitor;
                         break;
+                    case 5: 
+                    	// votar
+                    	goto menu_eleitor;
+                    	break;
                     default:
                         system("cls");
                         printf("Opção inválida!\n\a");
