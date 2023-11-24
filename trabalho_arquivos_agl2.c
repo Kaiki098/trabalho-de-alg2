@@ -221,47 +221,37 @@ void votar(int titulo_eleitor, int intencao_de_voto){
 		fread(&eleitor, sizeof(struct Eleitor), 1, Id_Arquivo_Eleitores);
 		
 		if(ferror(Id_Arquivo_Eleitores)){
+		
 			printf("Erro na leitura dos arquivo eleitores!\n");
+		
 		}else if(!feof(Id_Arquivo_Eleitores) && eleitor.titulo_eleitor == titulo_eleitor && eleitor.flag == 1){
+		
 			printf("Eleitor encontrado!\n");
 			printf("\nTitulo do Eleitor: %d\n", eleitor.titulo_eleitor);
             printf("Nome: %s\n", eleitor.nome);
             printf("Sexo: %s\n", eleitor.sexo);
             printf("Idade: %d\n", eleitor.idade);
             
-            if((Id_Arquivo_Candidatos = fopen("candidatos.dat", "rb")) == NULL){
-            	printf("Erro na abertura do arquivo candidatos!\n");
-			}
-            
-            struct Candidato candidato;
-            
-			while(!feof(Id_Arquivo_Candidatos)){
-				fread(&candidato, sizeof(struct Candidato), 1, Id_Arquivo_Candidatos);
-				
-				if(ferror(Id_Arquivo_Candidatos)){
-					printf("Erro na leiura do arquivo candidatos!\n");
-				}else if(!feof(Id_Arquivo_Eleitores) && candidato.numero_candidato == intencao_de_voto && eleitor.flag == 1){
-					eleitor.intencao_de_voto = intencao_de_voto;
+	   		eleitor.intencao_de_voto = intencao_de_voto;
+		
+			fseek(Id_Arquivo_Eleitores, sizeof(struct Eleitor)*cont, SEEK_SET);
+	
+			fwrite(&eleitor, sizeof(struct Eleitor), 1, Id_Arquivo_Eleitores);
+	
+			fseek(Id_Arquivo_Eleitores, 0, SEEK_END);
 			
-					fseek(Id_Arquivo_Eleitores, sizeof(struct Eleitor)*cont, SEEK_SET);
-			
-					fwrite(&eleitor, sizeof(struct Eleitor), 1, Id_Arquivo_Eleitores);
-			
-					fseek(Id_Arquivo_Eleitores, 0, SEEK_END);
-					
-				}
-			}
 			printf("Voto computado!\n");
-			break;
+			break;		
+		
 		}else if(feof(Id_Arquivo_Eleitores)){
 			printf("Eleitor NÃO encontrado!\n");
 		}
 		
 		cont++;
 	}
-	fclose(Id_Arquivo_Candidatos);
-	fclose(Id_Arquivo_Eleitores);
 	
+	fclose(Id_Arquivo_Eleitores);
+
 }
 
 int main(){
