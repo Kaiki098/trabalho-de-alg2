@@ -199,10 +199,10 @@ void exibir_eleitores(){
             printf("Problema na leitura do arquivo binário!\n");
         }
         else if(!feof(Id_Arquivo_Eleitores) && eleitor.flag == 1){
-            printf("\nTitulo do Eleitor: %d\n", eleitor.titulo_eleitor);
+            printf("Titulo do Eleitor: %d\n", eleitor.titulo_eleitor);
             printf("Nome: %s\n", eleitor.nome);
             printf("Sexo: %s\n", eleitor.sexo);
-            printf("Idade: %d\n", eleitor.idade);
+            printf("Idade: %d\n\n", eleitor.idade);
         }
 
     }
