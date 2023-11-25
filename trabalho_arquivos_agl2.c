@@ -67,11 +67,10 @@ void exibir_candidatos(){
             printf("Problema na leitura do arquivo binário!\n");
         }
         else if(!feof(Id_Arquivo_Candidatos) && candidato.flag == 1){
-            printf("\nNumero do candidato: %d\n", candidato.numero_candidato);
+            printf("Numero do candidato: %d\n", candidato.numero_candidato);
             printf("Nome: %s\n", candidato.nome);
             printf("Sexo: %s\n", candidato.sexo);
-            printf("Idade: %d\n", candidato.idade);
-            printf("Numero de votos: %d\n", candidato.votos);
+            printf("Idade: %d\n\n", candidato.idade);
         }
 
     }
@@ -204,7 +203,6 @@ void exibir_eleitores(){
             printf("Nome: %s\n", eleitor.nome);
             printf("Sexo: %s\n", eleitor.sexo);
             printf("Idade: %d\n", eleitor.idade);
-            printf("Intençao de voto: %d\n", eleitor.intencao_de_voto);
         }
 
     }
