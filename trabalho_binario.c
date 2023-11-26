@@ -8,8 +8,8 @@
 #define ANSI_COLOR_RED "\x1b[31m"
 #define ANSI_COLOR_YELLOW "\e[0;93m"
 #define ANSI_COLOR_CIAN "\e[1;96m"
-#define ANSI_COLOR_RESET  "\e[0m"
 #define ANSI_COLOR_GREEN  "\e[0;92m"
+#define ANSI_COLOR_RESET  "\e[0m"
 
 FILE *Id_Arquivo_Candidatos;
 FILE *Id_Arquivo_Eleitores;
@@ -19,7 +19,6 @@ struct Candidato{
     char nome[50]; //informaçoes pessoais
     char sexo[15];
     int idade;
-    int votos;
     int flag;// variavel para exclusão lógica
 };
 
@@ -41,7 +40,6 @@ void adicionar_candidato(struct Candidato candidato){
         printf("Erro ao abrir arquivo binário dos candidatos para gravação!\n");
     }
 
-    candidato.votos = 0;
     candidato.flag = 1;
 
     fwrite(&candidato, sizeof(struct Candidato), 1, Id_Arquivo_Candidatos);
@@ -113,6 +111,13 @@ void atualizar_candidato(struct Candidato candidatoAtualizado){
             fwrite(&candidatoAtualizado, sizeof(struct Candidato), 1, Id_Arquivo_Candidatos);
 
             fseek(Id_Arquivo_Candidatos, 0, SEEK_END);
+
+            printf("\nCandidato Atualizado!\n");
+
+            break;
+        }
+        else if(feof(Id_Arquivo_Candidatos)){
+            printf("\nCandidato não encontrado!\n");
         }
         cont++;
     }
@@ -167,6 +172,9 @@ void excluir_candidato(int numero_candidato){
     fclose(Id_Arquivo_Candidatos);
 }
 
+//CRUD Eleitor
+
+//Criação
 void adicionar_eleitor(struct Eleitor eleitor){
 
     if((Id_Arquivo_Eleitores = fopen("eleitor.dat", "a+b")) == NULL){
@@ -182,6 +190,7 @@ void adicionar_eleitor(struct Eleitor eleitor){
 
 }
 
+//Leitura
 void exibir_eleitores(){
 
     if((Id_Arquivo_Eleitores = fopen("eleitor.dat", "r")) == NULL){
@@ -210,6 +219,7 @@ void exibir_eleitores(){
 
 }
 
+//Atualização
 void atualizar_eleitor(struct Eleitor eleitorAtualizado){
     if((Id_Arquivo_Eleitores = fopen("eleitor.dat", "r+b")) == NULL){
         printf("Erro ao abrir arquivo binário dos eleitores!\n");
@@ -221,10 +231,10 @@ void atualizar_eleitor(struct Eleitor eleitorAtualizado){
 
 
     int i;
-    printf("Atualizando");
+    printf("Atualizando");// animação de atualização
     for(i = 0; i < 3; i++){
         printf(".");
-        Sleep(500);
+        Sleep(500);// usa a biblioteca Windows.h
     }
 
     int cont = 0;
@@ -244,6 +254,13 @@ void atualizar_eleitor(struct Eleitor eleitorAtualizado){
             fwrite(&eleitorAtualizado, sizeof(struct Eleitor), 1, Id_Arquivo_Eleitores);
 
             fseek(Id_Arquivo_Eleitores, 0, SEEK_END);
+
+            printf("\nEleitor Atualizado!\n");
+
+            break;
+        }
+        else if(feof(Id_Arquivo_Eleitores)){
+            printf("\nEleitor não encontrado!\n");
         }
         cont++;
     }
@@ -251,6 +268,7 @@ void atualizar_eleitor(struct Eleitor eleitorAtualizado){
     fclose(Id_Arquivo_Eleitores);
 }
 
+//Exclusão
 void excluir_eleitor(int titulo_eleitor){
     if((Id_Arquivo_Eleitores = fopen("eleitor.dat", "r+b")) == NULL){
         printf("Erro ao abrir arquivo binário dos eleitores!\n");
@@ -297,6 +315,7 @@ void excluir_eleitor(int titulo_eleitor){
     fclose(Id_Arquivo_Eleitores);
 }
 
+//Voto do eleitor
 void votar(int titulo_eleitor, int intencao_de_voto){
 	if((Id_Arquivo_Eleitores = fopen("eleitor.dat", "r+b")) == NULL){
 		printf("Erro na abertura do arquivo eleitor!\n");
@@ -306,7 +325,7 @@ void votar(int titulo_eleitor, int intencao_de_voto){
 
 	int cont = 0;
 
-	while(!feof(Id_Arquivo_Eleitores)){
+	while(!feof(Id_Arquivo_Eleitores)){//Procura o eleitor e grava sua intenção de voto
 		fread(&eleitor, sizeof(struct Eleitor), 1, Id_Arquivo_Eleitores);
 
 		if(ferror(Id_Arquivo_Eleitores)){
@@ -323,43 +342,13 @@ void votar(int titulo_eleitor, int intencao_de_voto){
 
 	   		eleitor.intencao_de_voto = intencao_de_voto;
 
-
 			fseek(Id_Arquivo_Eleitores, sizeof(struct Eleitor)*cont, SEEK_SET);
 
 			fwrite(&eleitor, sizeof(struct Eleitor), 1, Id_Arquivo_Eleitores);
 
 			fseek(Id_Arquivo_Eleitores, 0, SEEK_END);
 
-			if((Id_Arquivo_Candidatos = fopen ("candidatos.dat", "r+b"))  ==   NULL){
-
-                printf("Erro ao abrir arquivo binário dos candidatos!\n");
-			}
-
-            struct Candidato candidato;
-
-            int cont2=0;
-
-            while(!feof(Id_Arquivo_Candidatos)){
-
-                fread(&candidato, sizeof(struct Candidato),1,Id_Arquivo_Candidatos);
-                if(ferror(Id_Arquivo_Candidatos)){
-
-                    printf("Erro ao abrir arquivo binário dos candidatos para leitura!\n");
-                }
-
-                else if(!feof(Id_Arquivo_Candidatos) && candidato.numero_candidato == intencao_de_voto && candidato.flag == 1){
-
-                    candidato.votos ++ ;
-                    fseek(Id_Arquivo_Candidatos,sizeof(struct Candidato)* cont2,SEEK_SET);
-                    fwrite(&candidato, sizeof (struct Candidato), 1, Id_Arquivo_Candidatos);
-                    fseek(Id_Arquivo_Candidatos, 0, SEEK_END);
-
-                }
-                cont2++;
-
-            }
-            fclose(Id_Arquivo_Candidatos);
-			printf("Voto computado!\n");
+			printf("\nVoto computado!\n");
 			break;
 
 		}else if(feof(Id_Arquivo_Eleitores)){
@@ -373,14 +362,19 @@ void votar(int titulo_eleitor, int intencao_de_voto){
 
 }
 
+//Exibi resultado da pesquisa
 void exibir_resultado(){
 
     if((Id_Arquivo_Candidatos = fopen("candidatos.dat", "rb")) == NULL){
        printf("Erro ao abrir arquivo binário dos candidatos!\n");
-       }
+    }
+
+    int votos = 0;
+
     struct Candidato candidato;
 
-    while(!feof(Id_Arquivo_Candidatos)){
+    while(!feof(Id_Arquivo_Candidatos)){// acessa o campo votos de cada candidato e os exibi
+        votos = 0;
 
         fread(&candidato, sizeof(struct Candidato),1 , Id_Arquivo_Candidatos);
 
@@ -391,8 +385,26 @@ void exibir_resultado(){
         }
         else if(!feof(Id_Arquivo_Candidatos) && candidato.flag == 1){
 
+            if((Id_Arquivo_Eleitores = fopen("eleitor.dat", "rb")) == NULL){
+                printf("Erro na abertura do arquivo eleitores!\n");
+            }
+
+            struct Eleitor eleitor;
+
+            while(!feof(Id_Arquivo_Eleitores)){
+                fread(&eleitor, sizeof(struct Eleitor), 1, Id_Arquivo_Eleitores);
+
+                if(ferror(Id_Arquivo_Eleitores)){
+                    printf("Erro na leitura do arquivo eleitores!\n");
+                }
+                else if(!feof(Id_Arquivo_Eleitores) && eleitor.intencao_de_voto == candidato.numero_candidato && eleitor.flag == 1){
+                    votos++;
+                }
+            }
+
             printf("Candidato: %s\n", candidato.nome);
-            printf("Votos: %d\n\n", candidato.votos);
+            printf("Votos: %d\n\n", votos);
+            fclose(Id_Arquivo_Eleitores);
 
         }
 
@@ -423,7 +435,6 @@ int main(){
                 break;
 
             case 1://Menu Candidato
-
                 system("cls");
                 printf(ANSI_COLOR_CIAN "0- Voltar\n");
                 printf("1- Adicionar Candidato\n");
@@ -438,8 +449,7 @@ int main(){
 
                     case 1:
                         system("cls");
-                        fflush(stdin);
-                        printf("**Cadastro do Candidato**\n");
+                        printf("Cadastro do Candidato\n");
 
                         printf("Digite numero de identificação do candidato: ");
                         scanf("%d", &candidato.numero_candidato);
@@ -471,7 +481,8 @@ int main(){
                         break;
 
                     case 3:
-                        printf("**Atualização do candidato**\n");
+                        system("cls");
+                        printf("Atualização do candidato\n");
 
                         printf("Digite numero de identificação do candidato a ser alterado: ");
                         scanf("%d", &candidato.numero_candidato);
@@ -491,9 +502,7 @@ int main(){
                         scanf("%d", &candidato.idade);
                         fflush(stdin);
 
-                        system("cls");
                         atualizar_candidato(candidato);
-                        printf("\nCandidato Atualizado!\n");
                         system("pause");
                         break;
 
@@ -535,21 +544,21 @@ int main(){
                         fflush(stdin);
                         printf("Cadastro do Eleitor\n");
 
-                        printf("Digite o Titulo de eleitor: \n");
+                        printf("Digite o Titulo de eleitor: ");
                         scanf("%d", &eleitor.titulo_eleitor);
                         fflush(stdin);
 
-                        printf("Digite o nome do eleitor: \n");
+                        printf("Digite o nome do eleitor: ");
                         fgets(eleitor.nome, 50, stdin);
                         eleitor.nome[strlen(eleitor.nome) - 1] = '\0';
                         fflush(stdin);
 
-                        printf("Digite o sexo do candidato: \n");
+                        printf("Digite o sexo do candidato: ");
                         fgets(eleitor.sexo, 50, stdin);
                         eleitor.sexo[strlen(eleitor.sexo) - 1] = '\0';
                         fflush(stdin);
 
-                        printf("Digite a idade: \n");
+                        printf("Digite a idade: ");
                         scanf("%d", &eleitor.idade);
                         fflush(stdin);
 
@@ -563,7 +572,8 @@ int main(){
                         break;
 
                     case 3:
-                        printf("**Atualização do eleitor**\n");
+                        system("cls");
+                        printf("Atualização do eleitor\n");
 
                         printf("Digite o titulo do eleitor a ser alterado: ");
                         scanf("%d", &eleitor.titulo_eleitor);
@@ -583,9 +593,7 @@ int main(){
                         scanf("%d", &eleitor.idade);
                         fflush(stdin);
 
-                        system("cls");
                         atualizar_eleitor(eleitor);
-                        printf("\nEleitor Atualizado!\n");
                         system("pause");
                         break;
                     case 4:
@@ -599,6 +607,7 @@ int main(){
                         break;
 
                     case 5:
+                        system("cls");
                     	printf("Digite seu titulo de eleitor: ");
                     	int intencao_de_voto;
                     	scanf("%d", &titulo_eleitor);
@@ -619,7 +628,7 @@ int main(){
                 }
                 break;
 
-            case 3: // Exibir resultado da pesquisa
+            case 3: //Exibir resultado da pesquisa
                 system("cls");
                 exibir_resultado();
                 system("pause");
@@ -627,6 +636,7 @@ int main(){
 
 
             default:
+                system("cls");
                 printf("Opção inválida!\n\a");
                 system("pause");
                 break;
