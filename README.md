@@ -1,7 +1,7 @@
 # TRABALHO DE ALGORITMOS II
 Trabalho realizado na disciplina de Algoritmos II
 
-Realização de um programa que utiliza arquivos texo com a seguinte descrição do professor:
+Realização de um programa que utiliza arquivos texto com a seguinte descrição do professor:
 
 "
 Programa que leia dois arquivos com nomes (Arq1 e
