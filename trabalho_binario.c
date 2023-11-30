@@ -34,13 +34,14 @@ struct Eleitor{
 //CRUD Candidato
 
 //Criação
+/*Recebe uma struct candidatos e a armazena com flag = 1 para inclusão/exclusão lógica*/
 void adicionar_candidato(struct Candidato candidato){
 
     if((Id_Arquivo_Candidatos = fopen("candidatos.dat", "a+b")) == NULL){
         printf("Erro ao abrir arquivo binário dos candidatos para gravação!\n");
     }
 
-    candidato.flag = 1;
+    candidato.flag = 1;// variavel para inclusão/exclusão lógica
 
     fwrite(&candidato, sizeof(struct Candidato), 1, Id_Arquivo_Candidatos);
 
@@ -48,6 +49,7 @@ void adicionar_candidato(struct Candidato candidato){
 }
 
 //Leitura
+/*Le struct por struct no arquivo e imprime */
 void exibir_candidatos(){
 
     if((Id_Arquivo_Candidatos = fopen("candidatos.dat", "r")) == NULL){
@@ -77,6 +79,7 @@ void exibir_candidatos(){
 }
 
 //Atualização
+/*Encontra o candidato pelo numero_candidato e o sobrescreve */
 void atualizar_candidato(struct Candidato candidatoAtualizado){
     if((Id_Arquivo_Candidatos = fopen("candidatos.dat", "r+b")) == NULL){
         printf("Erro ao abrir arquivo binário dos eleitores!\n");
@@ -126,6 +129,7 @@ void atualizar_candidato(struct Candidato candidatoAtualizado){
 }
 
 //Exclusão
+/*Encontra o candidato pelo numero_candidato e sobrescreve com a variável flag = 0*/
 void excluir_candidato(int numero_candidato){
     if((Id_Arquivo_Candidatos = fopen("candidatos.dat", "r+b")) == NULL){
         printf("Erro ao abrir arquivo binário dos eleitores!\n");
@@ -175,13 +179,14 @@ void excluir_candidato(int numero_candidato){
 //CRUD Eleitor
 
 //Criação
+/*Recebe uma struct eleitor e a armazena com flag = 1 para inclusão/exclusão lógica e a intencao_de_voto = 0*/
 void adicionar_eleitor(struct Eleitor eleitor){
 
     if((Id_Arquivo_Eleitores = fopen("eleitor.dat", "a+b")) == NULL){
         printf("Erro ao abrir arquivo binário dos eleitores para gravação!");
     }
 
-    eleitor.flag = 1;
+    eleitor.flag = 1;// variavel para inclusão/exclusão lógica
 	eleitor.intencao_de_voto = 0;
 
     fwrite(&eleitor, sizeof(struct Eleitor), 1, Id_Arquivo_Eleitores);
@@ -191,6 +196,7 @@ void adicionar_eleitor(struct Eleitor eleitor){
 }
 
 //Leitura
+/*Le struct por struct no arquivo e imprime */
 void exibir_eleitores(){
 
     if((Id_Arquivo_Eleitores = fopen("eleitor.dat", "r")) == NULL){
@@ -220,6 +226,7 @@ void exibir_eleitores(){
 }
 
 //Atualização
+/*Encontra o candidato pelo numero_candidato e o sobrescreve */
 void atualizar_eleitor(struct Eleitor eleitorAtualizado){
     if((Id_Arquivo_Eleitores = fopen("eleitor.dat", "r+b")) == NULL){
         printf("Erro ao abrir arquivo binário dos eleitores!\n");
@@ -269,6 +276,7 @@ void atualizar_eleitor(struct Eleitor eleitorAtualizado){
 }
 
 //Exclusão
+/*Encontra o candidato pelo numero_candidato e sobrescreve com a variável flag = 0*/
 void excluir_eleitor(int titulo_eleitor){
     if((Id_Arquivo_Eleitores = fopen("eleitor.dat", "r+b")) == NULL){
         printf("Erro ao abrir arquivo binário dos eleitores!\n");
@@ -316,6 +324,7 @@ void excluir_eleitor(int titulo_eleitor){
 }
 
 //Voto do eleitor
+/*Encontra o candidato pelo titulo informado e sobrescreve salvando a intencao de voto informada*/
 void votar(int titulo_eleitor, int intencao_de_voto){
 	if((Id_Arquivo_Eleitores = fopen("eleitor.dat", "r+b")) == NULL){
 		printf("Erro na abertura do arquivo eleitor!\n");
@@ -363,6 +372,7 @@ void votar(int titulo_eleitor, int intencao_de_voto){
 }
 
 //Exibi resultado da pesquisa
+/*Para cada candidato procura cada eleitor com a intencao_de_voto igual ao numero_do_candidato, contando quantos votos e exibi os votos*/
 void exibir_resultado(){
 
     if((Id_Arquivo_Candidatos = fopen("candidatos.dat", "rb")) == NULL){
