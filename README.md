@@ -8,3 +8,5 @@
 <h1>Pesquisa Eleitoral</h1>
 <h2>Descrição</h2>
 <p>Este projeto é um sistema de pesquisa eleitoral em linguagem C para análise de dados relacionados à eleições. O programa é capaz de realizar o CRUD dos candidatos e eleitores, gravar as intenções de votos e exibir o resultado da pesquisa eleitoral.</p>
+<h2>Funcionalidades</h2>
+<h3>1. CRUD: </h3>
