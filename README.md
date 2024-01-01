@@ -1,21 +1,10 @@
 # TRABALHO DE ALGORITMOS II
-Trabalho realizado na disciplina de Algoritmos II
+<p>Basicamente este trabalho foi dividido em duas partes, uma em que foi elaborado um programa de arquivos texto e outra um programa de pesquisa eleitoral que ultiliza arquivos binários.</p> 
 
-Realização de um programa que utiliza arquivos texto com a seguinte descrição do professor:
+<h1>Manipulação de arquivos texto</h1>
+<h2>Descrição</h2>
+<p>O programa compara os nomes já impressos em dois arquivos texto e gera um novo arquivo texto com os nomes que estão em ambos os arquivos de leitura.</p>
 
-"
-Programa que leia dois arquivos com nomes (Arq1 e
-Arq2) e gere um terceiro arquivo (Arq3) com os
-nomes que estão em Arq1 e também estão em Arq2.
-"
-
-Realização de um programa que utiliza arquivos binários com a seguinte descrição do professor:
-
-"
-Programa para gerenciamento de pesquisa eleitoral. 
-
-O programa deverá: 
-- Realizar o CRUD de candidatos e eleitores;
-- realizar a gravação das intenções de votos (cada eleitor só pode estar associado a um candidato);
-- exibir o resultado da pesquisa.
-"
+<h1>Pesquisa Eleitoral</h1>
+<h2>Descrição</h2>
+<p>Este projeto é um sistema de pesquisa eleitoral em linguagem C para análise de dados relacionados à eleições. O programa é capaz de realizar o CRUD dos candidatos e eleitores, gravar as intenções de votos e exibir o resultado da pesquisa eleitoral.</p>
