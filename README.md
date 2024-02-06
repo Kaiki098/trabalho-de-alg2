@@ -14,3 +14,4 @@
 </ul>
 <h2>Requisitos do Sistema</h2>
 <h2>Intruções de uso</h2>
+<p>Recomendo a compilação...</p>
