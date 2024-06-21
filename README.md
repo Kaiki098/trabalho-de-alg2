@@ -2,7 +2,10 @@
 <p>Basicamente este trabalho foi dividido em duas partes, uma em que foi elaborado um programa de arquivos texto e outra um programa de pesquisa eleitoral que ultiliza arquivos binários.</p> 
 
 ## 👨‍💻 Tecnologias
-<img height="45em" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg" />
+<div>
+  <img height="45em" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg" />
+  <img height="45em" src="https://github.com/Kaiki098/trabalho-de-algoritmos-II/assets/127666620/b774f912-0b4c-4a84-abc5-0eda141be234">
+</div>
 
 ## Parte 1: Manipulação de arquivos texto
 ### Descrição
