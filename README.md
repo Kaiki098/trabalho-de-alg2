@@ -21,4 +21,18 @@ Este projeto é um sistema de pesquisa eleitoral em linguagem C para análise de
   3. Cmd colorido: Como o programa é executado em uma tela apenas com letras e números, foi adicionado cores para cada menu afim de melhorar a interface 
 
 ## ⚙️ Intruções de uso
- Para a instalação dos programas, será necessário  um compilador em C. Se as configurações do compilador já estiverem setadas você pode navegar para a pasta com o arquivo do programa e escrever o seguinte comando: ``` ```
+ Primeiramente,clone os repositórios ou baixe o arquivo zip e o descompacte.
+ Após obter os arquivos em sua máquina, para compilar os programas, você pode usar o compilador GCC no Linux e MinGW no Windows. Aqui estão os comandos que você precisa executar:
+
+- **No Linux:**
+    1. Abra o terminal.
+    2. Navegue até o diretório do seu arquivo .c usando o comando `cd`.
+    3. Digite `gcc nome_do_arquivo.c -o nome_do_programa` e pressione Enter.
+
+- **No Windows:**
+    1. Primeiro, você precisa instalar o MinGW. Você pode baixar o instalador do [site oficial do MinGW](http://www.mingw.org/).
+    2. Depois de instalar o MinGW, abra o Prompt de Comando.
+    3. Navegue até o diretório do seu arquivo .c usando o comando `cd`.
+    4. Digite `gcc nome_do_arquivo.c -o nome_do_programa.exe` e pressione Enter.
+
+Depois de executar esses comandos, você terá um arquivo executável que pode ser executado com `./nome_do_programa` no Linux ou `nome_do_programa.exe` no Prompt de Comando do Windows.
