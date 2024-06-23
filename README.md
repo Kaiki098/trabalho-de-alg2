@@ -21,4 +21,4 @@ Este projeto é um sistema de pesquisa eleitoral em linguagem C para análise de
   3. Cmd colorido: Como o programa é executado em uma tela apenas com letras e números, foi adicionado cores para cada menu afim de melhorar a interface 
 
 ## ⚙️ Intruções de uso
- Para a instalação do programa, será necessário  um compilador em C. Se as configurações do compilador já estiverem setadas você pode navegar para a pasta com o arquivo do programa e escrever o seguinte comando: ``` ```
+ Para a instalação dos programas, será necessário  um compilador em C. Se as configurações do compilador já estiverem setadas você pode navegar para a pasta com o arquivo do programa e escrever o seguinte comando: ``` ```
